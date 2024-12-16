@@ -6,5 +6,5 @@ const database = require('./config/database');
 // merge .env with .env.production by overriding
 const dotenv = require('dotenv').config({path: ['.env.production', '.env']});
 
-const sequelize = database.connect(dotenv);
+const sequelize = database.connect();
 

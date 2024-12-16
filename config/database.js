@@ -1,43 +1,42 @@
 const { Sequelize } = require("sequelize");
 
-// export const DbConfig = {
-//     DB_HOST: String,
-//     DB_PORT: String,
-//     DB_USERNAME: String,
-//     DB_PASSWORD: String,
-//     DB_NAME: String,
-//     DB_DIALECT: String,
-// }
-
 // Initialize Sequelize instance
 const database = {
-    connect: async (dotenv) => {
-        // Load environment variables
-        const {
-            DB_HOST,
-            DB_PORT,
-            DB_USERNAME,
-            DB_PASSWORD,
-            DB_NAME,
-            DB_DIALECT,
-        } = process.env;
-      
-        const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
-            host: DB_HOST,
-            port: DB_PORT,
-            dialect: DB_DIALECT,
-            logging: false, // Disable SQL query logging in production
-          });
-    
+    sequelize: null,
+    config: {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        dialect: process.env.DB_DIALECT
+    },
+    init: () => {
+        console.log("DB Config:", database.config);
+        const config = database.config;
+        if (!database.sequelize) {
+            database.sequelize = new Sequelize(database.config.database, database.config.username, database.config.password, {
+                host: database.config.host,
+                port: database.config.port,
+                dialect: database.config.dialect,
+                logging: false, // Disable SQL query logging in production
+              });
+        }
+        return database.sequelize;
+    },
+    connect: async () => {
+        if (!database.sequelize) {
+            database.init();
+        }
+        
         try {
-            await sequelize.authenticate();
+            await database.sequelize.authenticate();
             console.log('Connection has been established successfully.');
-            return sequelize;
+            return database.sequelize;
         } catch (error) {
             console.error('Unable to connect to the database:', error);
         }
     }
 }
-
-
-  module.exports = database;
+database.init();
+module.exports = database;

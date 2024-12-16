@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "sync-db": "node ./scripts/sync.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -16,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.7",
+    "path": "^0.12.7",
     "pg": "^8.13.1",
     "sequelize": "^6.37.5"
   }

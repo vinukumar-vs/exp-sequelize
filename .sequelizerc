@@ -1,0 +1,10 @@
+import database from './config/database';
+
+const path = require('path');
+
+module.exports = {
+  config: database.config,
+  'models-path': path.resolve('database', 'models'),
+  'seeders-path': path.resolve('database', 'seeders'),
+  'migrations-path': path.resolve('database', 'migrations'),
+};
