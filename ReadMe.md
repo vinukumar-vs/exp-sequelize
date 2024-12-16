@@ -10,7 +10,9 @@ cd database
 npx sequelize-cli init
 ```
 
-reference: [Sequelize-CLI scripts](https://sequelize.org/docs/v6/other-topics/migrations/#project-bootstrapping)
+*reference:*
+[Sequelize-CLI scripts](https://sequelize.org/docs/v6/other-topics/migrations/#project-bootstrapping)
+[Sequelize-CLI Github](https://github.com/sequelize/cli)
 
 ### Step 2
 Create the `migration` script before we start migration process. Use the below command to get `migration` template
