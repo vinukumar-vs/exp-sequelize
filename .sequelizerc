@@ -1,10 +1,13 @@
-import database from './config/database';
-
+require('dotenv').config(); 
+const database = require('./config/database');
 const path = require('path');
 
-module.exports = {
-  config: database.config,
+const seqRc = {
+  config: path.resolve('database/config', 'config.js'),
   'models-path': path.resolve('database', 'models'),
   'seeders-path': path.resolve('database', 'seeders'),
-  'migrations-path': path.resolve('database', 'migrations'),
 };
+
+console.log('Sequelize RC Config:', seqRc);
+
+module.exports = seqRc;
