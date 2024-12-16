@@ -23,6 +23,17 @@ const database = require('../config/database');
     // Sync models
     await sequelize.sync({ alter: false }); // Use `force: true` if needed for development
     console.log('Models synchronized successfully.');
+
+    // Suggest to run the migration scrip to update the models changes
+    console.log("\n============ Next Steps ============");
+    console.log("To trigger the migration(if needed), execute \n"+ 
+      "`npm run migrate-db` \n\n"
+    )
+
+    console.log("To feed sample data, execute \n"+
+      "`npm run seed-db`"
+    )
+    console.log("============ END ============\n");
   } catch (error) {
     console.error('Error syncing models:', error);
   } finally {

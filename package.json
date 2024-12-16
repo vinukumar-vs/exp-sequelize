@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "sync-db": "node ./scripts/sync.js",
-    "seed-db": "npx sequelize-cli db:seed:all",
+    "db-sync": "node ./scripts/sync.js",
+    "db-seed": "npx sequelize-cli db:seed:all",
+    "db-migrate": "npx sequelize-cli db:migrate",
+    "db-setup-dev": "npm run db-sync && npm run db-migrate && npm run db-seed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
